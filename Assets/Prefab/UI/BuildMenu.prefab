@@ -89,6 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b4daf2bfe0b7214ab23a01f43e862ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 0}
   optionParent: {fileID: 4554450017964787369}
 --- !u!1 &7561474807351936637
 GameObject:
@@ -219,6 +220,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6393485973260523521, guid: c4c42e769ed77ee4fac34b2686e35128, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 34870bb5e97a9d4419940c53a5aaa66d, type: 3}
     - target: {fileID: 8768191408917205593, guid: c4c42e769ed77ee4fac34b2686e35128, type: 3}
       propertyPath: m_Name
       value: BuildRoot
@@ -427,6 +432,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuildTrunk
       objectReference: {fileID: 0}
+    - target: {fileID: 6135217852946435388, guid: 8b9caee5d89af404d97da847a9bae807, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 34870bb5e97a9d4419940c53a5aaa66d, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b9caee5d89af404d97da847a9bae807, type: 3}
 --- !u!224 &8906989486486356545 stripped

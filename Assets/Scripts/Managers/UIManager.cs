@@ -15,6 +15,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] Text waterText;
     [SerializeField] Text firmnessText;
     [SerializeField] Text windForce;
+    [SerializeField] Text sunGainText;
+    [SerializeField] Text rainGainText;
+
 
     [Header("Containers")]
     [SerializeField] Transform buildButtonParent;
@@ -28,6 +31,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject[] branchBuildOptions;
 
     public GameObject endText;
+    public Text finalScore;
 
     public UnityAction OnSelectedChange { get; set; }
 
@@ -139,6 +143,8 @@ public class UIManager : MonoBehaviour
         var data = GameManager.Instance.PlayerData;
         sunText.text = "" + Mathf.RoundToInt(data.ResourceSun);
         waterText.text = "" + Mathf.RoundToInt(data.ResourceRain);
+        sunGainText.text = $"<color=#1AFF00> (+{data.SunGain}/sec)</color>";
+        rainGainText.text = $"<color=#1AFF00> (+{data.RainGain}/sec)</color>";
         firmnessText.text = "" + data.TreeStrength;
     }
 

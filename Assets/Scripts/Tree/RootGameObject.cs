@@ -36,7 +36,7 @@ public class RootGameObject : MonoBehaviour
     {
         transform.position = DataList.FirstOrDefault();
 
-        while (Vector3.Distance(endPoint, DataList.Last()) > 0.05f)
+        while (Vector3.Distance(endPoint, DataList.Last() - transform.position) > 0.05f)
         {
             rootShape.spline.Clear();
 
@@ -49,9 +49,9 @@ public class RootGameObject : MonoBehaviour
 
                 if (DataList.Count > 1 && i == DataList.Count - 1)
                 {
-                    endPoint = Vector3.Lerp(endPoint, pos, 0.03f);
-                    
-                    if (Vector3.Distance(endPoint, DataList[i - 1]) > 0.2f)
+                    endPoint = Vector3.Lerp(endPoint, pos, 0.01f);
+
+                    if (Vector3.Distance(endPoint, DataList[i - 1] - transform.position) > 0.1f)
                     {
                         rootShape.spline.InsertPointAt(i, endPoint);
                         rootShape.spline.SetHeight(i, Mathf.Clamp(0.1f + DataList.Count * 0.05f, 0f, 3f) / ((i / 3f) + 1f));
@@ -61,7 +61,7 @@ public class RootGameObject : MonoBehaviour
                     }
                 }
                 else
-                { 
+                {
                     rootShape.spline.InsertPointAt(i, pos);
                     rootShape.spline.SetHeight(i, Mathf.Clamp(0.1f + DataList.Count * 0.05f, 0f, 3f) / ((i / 3f) + 1f));
                     rootShape.spline.SetTangentMode(i, ShapeTangentMode.Continuous);

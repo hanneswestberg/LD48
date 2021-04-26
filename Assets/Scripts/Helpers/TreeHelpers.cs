@@ -7,7 +7,7 @@ public static class TreeHelpers
 {
     public static int CalculateTreeStrength(this TreeData treeData)
     {
-        return treeData.RootNodes.Count * 10;
+        return 20 + treeData.RootNodes.Count * 10 - treeData.TrunkNodes.Count * 5 - treeData.BranchNodes.Where(x => x.HasBranch).Count() * 5;
     }
 
     public static int CalculateSunGain(this TreeData treeData)
@@ -30,7 +30,7 @@ public static class TreeHelpers
 
     public static int CalculateRootCost(this TreeData treeData)
     {
-        return 10 * treeData.RootNodes.Count;
+        return 10 * treeData.RootNodes.Count - 40;
     }
 
     public static int CalculateTrunkCost(this TreeData treeData)

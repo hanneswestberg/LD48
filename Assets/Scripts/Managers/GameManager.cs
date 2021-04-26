@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [Header("References:")]
     [SerializeField] private Transform treeParent;
     [SerializeField] private GameObject treePrefab;
+    [SerializeField] private List<ParticleSystemForceField> windField;
 
     // Rigidbodys for wind
     private List<Rigidbody2D> rigidbody2Ds;
@@ -56,7 +57,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator MainGameLoop()
     {
-        var windTimer = Random.Range(5f, 10f);
+        var windTimer = -1f;
         var windDirection = new Vector3(Random.Range(-1f, 1f), Random.Range(-0.2f, 0.2f), 0f);
         var windMagnitude = 1f;
 
@@ -74,11 +75,17 @@ public class GameManager : MonoBehaviour
 
             if (windTimer < 0f)
             { 
-                windDirection = new Vector3(Random.Range(-1f, 1f), Random.Range(-0.0f, 0.0f));
+                windDirection = new Vector3(Random.Range(-1f, 1f), Random.Range(-0.1f, 0.1f));
                 windTimer = Random.Range(5f, 10f);
 
                 UIManager.Instance.UpdateWind(windDirection, windMagnitude);
                 Debug.Log($"Wind direction: {windDirection.ToString()}");
+
+                foreach (var field in windField)
+                {
+                    field.directionX = windDirection.x * 30f * windMagnitude;
+                    field.directionY = windDirection.y * 30f * windMagnitude;
+                }
             }
 
             // Apply wind
@@ -88,7 +95,7 @@ public class GameManager : MonoBehaviour
             }
 
             windTimer -= Time.deltaTime;
-            windMagnitude += Time.deltaTime / 30f;
+            windMagnitude += Time.deltaTime / 45f;
 
             if (WindForce > PlayerData.TreeStrength)
             {
@@ -102,6 +109,7 @@ public class GameManager : MonoBehaviour
 
                     windTimer = 100f;
                     UIManager.Instance.endText.SetActive(true);
+                    UIManager.Instance.finalScore.text = PlayerData.TreeStrength.ToString();
                 }
 
                 treeBase.bodyType = RigidbodyType2D.Dynamic;

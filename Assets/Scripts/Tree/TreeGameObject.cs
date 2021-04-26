@@ -85,7 +85,7 @@ public class TreeGameObject : MonoBehaviour
             var index = segmentJoints.IndexOf(trunk) + 1;
             var rigidBody = trunk.GetComponent<Rigidbody2D>();
             rigidBody.mass = 100f / index;
-            rigidBody.gravityScale = -0.5f / index;
+            rigidBody.gravityScale = -0.1f + (-0.4f / index);
         }
 
         foreach (var branch in branches)
